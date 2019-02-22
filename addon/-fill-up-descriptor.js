@@ -28,8 +28,6 @@ export default class FillUpProperty extends ComputedProperty {
   }
 
   componentSetup(component, property) {
-    debugger;
-
     let element = get(component, 'element');
 
     assert(
