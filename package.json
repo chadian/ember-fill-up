@@ -19,6 +19,8 @@
     "test": "ember try:each"
   },
   "dependencies": {
+    "element-resize-detector": "^1.1.15",
+    "ember-auto-import": "^1.2.20",
     "ember-cli-babel": "^6.6.0"
   },
   "devDependencies": {
