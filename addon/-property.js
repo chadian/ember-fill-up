@@ -1,14 +1,16 @@
 
 import ComputedProperty from "@ember/object/computed";
 import resizeDectectorFactory from "element-resize-detector";
-import { get } from "@ember/object";
+import { get, getWithDefault } from "@ember/object";
 import { assert } from "@ember/debug";
 
-export default class FillUpProperty extends ComputedProperty {
+export default class SizeProperty extends ComputedProperty {
   constructor(propertyFn) {
     let propertyInstance;
 
-    super(function(property) {
+    // function calls happen on any get of the attached property
+    // or on `notifyPropertyChange`.
+    super(function parentPropertyFunction(property) {
       let componentContext = this;
 
       assert(
@@ -16,10 +18,14 @@ export default class FillUpProperty extends ComputedProperty {
         get(componentContext, "isComponent") === true
       );
 
+      // future handling of attached component/teardown
       componentContext.on('didInsertElement', propertyInstance.componentSetup.bind(propertyInstance, componentContext, property));
       componentContext.on('willDestroyElement', propertyInstance.componentTeardown.bind(propertyInstance, componentContext));
 
-      return propertyFn.call(componentContext);
+      // call propertyFn whose value ends up being the value of the
+      // property
+      let element = getWithDefault(componentContext, 'element', null);
+      return propertyFn.call(componentContext, element);
     });
 
     propertyInstance = this;

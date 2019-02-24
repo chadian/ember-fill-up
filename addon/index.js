@@ -1,5 +1,6 @@
-import FillUpProperty from './-fill-up-descriptor';
+import SizeProperty from './-property';
 
-export function fillUp(...args) {
-  return new FillUpProperty(...args);
-}
+let defaultPropertyFn = element => element;
+
+export let sizeChange = (fn) => new SizeProperty(fn || defaultPropertyFn);
+export let size = () => new SizeProperty(element => element.getBoundingClientRect());
