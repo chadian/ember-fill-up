@@ -47,6 +47,12 @@ export default class SizeProperty extends ComputedProperty {
 
   componentTeardown(component) {
     let element = get(component, 'element');
-    this.detector.uninstall(element);
+    this.detector.removeAllListeners(element);
+  }
+
+  teardown(...args) {
+    super.teardown(...args);
+    this.detector.uninstall();
+    this.detector = null;
   }
 }
