@@ -52,11 +52,11 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 
 ### Thanks!
 This addon is made possible by the many people who have worked on the concept
-of element queries before. Notably, I have referenced the work:
+of element queries before. Notably, I have referenced the work from:
 
-Lucas Wiener * - `[element-resize-detector](https://github.com/wnr/element-resize-detector)`
-Sean Matheson - `[react-sizeme](https://github.com/ctrlplusb/react-sizeme)`
-Marc J. Schmidt - `[css-element-queries](https://github.com/marcj/css-element-queries)`
+* Lucas Wiener * - [`element-resize-detector`](https://github.com/wnr/element-resize-detector)
+* Sean Matheson - [`react-sizeme`](https://github.com/ctrlplusb/react-sizeme)
+* Marc J. Schmidt - [`css-element-queries`](https://github.com/marcj/css-element-queries)
 
 \* Lucas Wiener, Tomas Ekholm, and Philipp Haller also authored an [excellent paper](https://arxiv.org/pdf/1511.01223v1.pdf) summarizing the differences in detecting changes in element sizes. I highly encourage reading it over.
 
