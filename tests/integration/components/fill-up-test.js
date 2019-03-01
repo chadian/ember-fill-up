@@ -118,7 +118,7 @@ module('Integration | Component | fill-up', function(hooks) {
     container.style.width = "300px";
     container.style.height = "600px";
 
-    await wait(50);
+    await wait(100);
 
     assert.equal(find('#width').textContent.trim(), 'width: 300');
     assert.equal(find('#height').textContent.trim(), 'height: 600');
