@@ -28,4 +28,4 @@ export let size = () => new SizeProperty(element => {
 
 export let greaterThan = dimensionComparison((value, number) => value > number);
 export let lessThan = dimensionComparison((value, number) => value < number);
-export let isEqualTo = dimensionComparison((value, number) => value === number);
+export let equalTo = dimensionComparison((value, number) => value === number);

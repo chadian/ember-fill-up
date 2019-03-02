@@ -12,7 +12,14 @@ module('Integration | Component | comparison-computed', function(hooks) {
   // what is used internally with dummy test component and for
   // the rest of the tests
   test('comparison values matches test constant', async function(assert) {
-    await render(hbs`{{comparison-computed}}`);
+    await render(hbs`
+      <div id="comparisonValue">
+        {{#comparison-computed as |_|}}
+          {{_.comparisonValue}}
+        {{/comparison-computed}}
+      </div>
+    `);
+
     assert.equal(find('#comparisonValue').textContent.trim(), COMPARISON_VALUE);
   });
 
@@ -22,7 +29,14 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 500px; height: 500px; }
         </style>
-        {{comparison-computed}}
+        {{#comparison-computed as |_|}}
+          <div id="comparisonEqualToWidth">
+            {{_.equalToWidth}}
+          </div>
+          <div id="comparisonEqualToHeight" >
+            {{_.equalToHeight}}
+          </div>
+        {{/comparison-computed}}
       `);
 
       assert.equal(find('#comparisonEqualToWidth').textContent.trim(), "true");
@@ -32,9 +46,16 @@ module('Integration | Component | comparison-computed', function(hooks) {
     test('isEqualTo handles dimensions NOT equal to the comparison value', async function (assert) {
       await render(hbs`
         <style>
-          #ember-testing div { width: 501px; height: 501px; }
+          #ember-testing div { width: 499px; height: 499px; }
         </style>
-        {{comparison-computed}}
+        {{#comparison-computed as |_|}}
+          <div id="comparisonEqualToWidth">
+            {{_.equalToWidth}}
+          </div>
+          <div id="comparisonEqualToHeight" >
+            {{_.equalToHeight}}
+          </div>
+        {{/comparison-computed}}
       `);
 
       assert.equal(find('#comparisonEqualToWidth').textContent.trim(), "false");
@@ -48,7 +69,14 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 499px; height: 499px; }
         </style>
-        {{comparison-computed}}
+        {{#comparison-computed as |_|}}
+          <div id="comparisonGreaterThanWidth">
+            {{_.greaterThanWidth}}
+          </div>
+          <div id="comparisonGreaterThanHeight" >
+            {{_.greaterThanHeight}}
+          </div>
+        {{/comparison-computed}}
       `);
 
       assert.equal(
@@ -67,7 +95,14 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 501px; height: 501px; }
         </style>
-        {{comparison-computed}}
+        {{#comparison-computed as |_|}}
+          <div id="comparisonGreaterThanWidth">
+            {{_.greaterThanWidth}}
+          </div>
+          <div id="comparisonGreaterThanHeight" >
+            {{_.greaterThanHeight}}
+          </div>
+        {{/comparison-computed}}
       `);
 
       assert.equal(
@@ -88,7 +123,14 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 499px; height: 499px; }
         </style>
-        {{comparison-computed}}
+        {{#comparison-computed as |_|}}
+          <div id="comparisonLessThanWidth">
+            {{_.lessThanWidth}}
+          </div>
+          <div id="comparisonLessThanHeight" >
+            {{_.lessThanHeight}}
+          </div>
+        {{/comparison-computed}}
       `);
 
       assert.equal(
@@ -107,7 +149,14 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 501px; height: 501px; }
         </style>
-        {{comparison-computed}}
+        {{#comparison-computed as |_|}}
+          <div id="comparisonLessThanWidth">
+            {{_.lessThanWidth}}
+          </div>
+          <div id="comparisonLessThanHeight" >
+            {{_.lessThanHeight}}
+          </div>
+        {{/comparison-computed}}
       `);
 
       assert.equal(
@@ -125,25 +174,35 @@ module('Integration | Component | comparison-computed', function(hooks) {
   test('it can use explicit WIDTH constant', async function(assert) {
     await render(hbs`
       <style>
-        #ember-testing div { width: 501px;}
+        #ember-testing div { width: 501px; height: 501px; }
       </style>
-      {{comparison-computed}}
+      {{#comparison-computed as |_|}}
+        <div id="greaterThanWithWidthConstant" >
+          {{_.greaterThanWithWidthConstant}}
+        </div>
+        <div id="lessThanWithWidthConstant" >
+          {{_.lessThanWithWidthConstant}}
+        </div>
+        <div id="equalToWithWidthConstant" >
+          {{_.equalToWithWidthConstant}}
+        </div>
+      {{/comparison-computed}}
     `);
 
     assert.equal(
-      find('#comparisonGreaterThanWithWidthConstant').textContent.trim(),
+      find('#greaterThanWithWidthConstant').textContent.trim(),
       "true",
       "width with constant greater than"
     );
 
     assert.equal(
-      find('#comparisonLessWithWidthConstant').textContent.trim(),
+      find('#lessThanWithWidthConstant').textContent.trim(),
       "false",
       "width with constant less than"
     );
 
     assert.equal(
-      find('#comparisonIsEqualToWithWidthConstant').textContent.trim(),
+      find('#equalToWithWidthConstant').textContent.trim(),
       "false",
       "width with constant equals"
     );

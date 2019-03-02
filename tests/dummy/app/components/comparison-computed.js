@@ -5,7 +5,7 @@ import {
   HEIGHT,
   greaterThan,
   lessThan,
-  isEqualTo
+  equalTo
 } from "ember-fill-up";
 
 const COMPARISON_PIXEL_VALUE = 500;
@@ -19,12 +19,12 @@ export default Component.extend({
   greaterThanHeight: greaterThan(COMPARISON_PIXEL_VALUE, HEIGHT),
   lessThanWidth: lessThan(COMPARISON_PIXEL_VALUE),
   lessThanHeight: lessThan(COMPARISON_PIXEL_VALUE, HEIGHT),
-  isEqualToWidth: isEqualTo(COMPARISON_PIXEL_VALUE),
-  isEqualToHeight: isEqualTo(COMPARISON_PIXEL_VALUE, HEIGHT),
+  equalToWidth: equalTo(COMPARISON_PIXEL_VALUE),
+  equalToHeight: equalTo(COMPARISON_PIXEL_VALUE, HEIGHT),
 
 
   // explicit computed width's by constant
   greaterThanWithWidthConstant: greaterThan(COMPARISON_PIXEL_VALUE, WIDTH),
   lessThanWithWidthConstant: lessThan(COMPARISON_PIXEL_VALUE, WIDTH),
-  isEqualToWithWidthConstant: isEqualTo(COMPARISON_PIXEL_VALUE, WIDTH),
+  equalToWithWidthConstant: equalTo(COMPARISON_PIXEL_VALUE, WIDTH),
 });
