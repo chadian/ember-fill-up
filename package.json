@@ -54,7 +54,10 @@
     "node": "^4.5 || 6.* || >= 7.*"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "versionCompatibility": {
+      "ember": ">=2.16.0"
+    }
   },
   "bugs": {
     "url": "https://github.com/chadian/ember-fill-up/issues"
