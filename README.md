@@ -1,4 +1,4 @@
-⛽️ ember-fill-up
+⛽️ ember-fill-up [![Build Status](https://travis-ci.org/chadian/ember-fill-up.svg?branch=master)](https://travis-ci.org/chadian/ember-fill-up)
 ==============================================================================
 
 The purpose of this addon is to provide useful primatives to create responsive
