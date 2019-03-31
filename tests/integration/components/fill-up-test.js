@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { find, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-let wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+import waitForSizeChange from 'dummy/tests/helpers/wait-for-size-change';
 
 module('Integration | Component | fill-up', function(hooks) {
   setupRenderingTest(hooks);
@@ -61,7 +61,7 @@ module('Integration | Component | fill-up', function(hooks) {
     assert.equal(find('#height').textContent.trim(), 'height: 10');
   });
 
-  test('it reports width and height set based on percentages', async function (assert) {
+  test('it reports width and height set based on percentages', async function(assert) {
     await render(hbs `
       <style>
         #container {
@@ -92,7 +92,7 @@ module('Integration | Component | fill-up', function(hooks) {
     assert.equal(find('#height').textContent.trim(), 'height: 130');
   });
 
-  test('it detects changes in width and height', async function (assert) {
+  test('it detects changes in width and height', async function(assert) {
     await render(hbs `
       <style>
         #container {
@@ -118,7 +118,7 @@ module('Integration | Component | fill-up', function(hooks) {
     container.style.width = "300px";
     container.style.height = "600px";
 
-    await wait(100);
+    await waitForSizeChange();
 
     assert.equal(find('#width').textContent.trim(), 'width: 300');
     assert.equal(find('#height').textContent.trim(), 'height: 600');

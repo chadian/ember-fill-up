@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
+import waitForSizeChange from 'dummy/tests/helpers/wait-for-size-change';
 import hbs from 'htmlbars-inline-precompile';
 
 const COMPARISON_VALUE = 500;
@@ -205,6 +206,39 @@ module('Integration | Component | comparison-computed', function(hooks) {
       find('#equalToWithWidthConstant').textContent.trim(),
       "false",
       "width with constant equals"
+    );
+  });
+
+  test('it can detect changes in the comparison property', async function(assert) {
+    this.set('comparisonValue', 500);
+
+    await render(hbs`
+      <style>
+        #ember-testing div { width: 500px; height: 500px; }
+      </style>
+
+      {{#comparison-computed comparisonValue=comparisonValue as |_|}}
+        <div id="greaterThanWithWidthConstant">
+          {{_.greaterThanWithWidthConstant}}
+        </div>
+      {{/comparison-computed}}
+    `);
+
+    assert.equal(
+      find('#greaterThanWithWidthConstant').textContent.trim(),
+      "false",
+      "width is not greater than comparison value"
+    );
+
+    // set lower than width
+    this.set('comparisonValue', 499);
+
+    await waitForSizeChange();
+
+    assert.equal(
+      find('#greaterThanWithWidthConstant').textContent.trim(),
+      "true",
+      "width is greater than comparison value"
     );
   });
 });

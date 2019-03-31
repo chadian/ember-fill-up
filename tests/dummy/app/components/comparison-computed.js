@@ -15,16 +15,16 @@ export default Component.extend({
 
   comparisonValue: COMPARISON_PIXEL_VALUE,
 
-  greaterThanWidth: greaterThan(COMPARISON_PIXEL_VALUE),
-  greaterThanHeight: greaterThan(COMPARISON_PIXEL_VALUE, HEIGHT),
-  lessThanWidth: lessThan(COMPARISON_PIXEL_VALUE),
-  lessThanHeight: lessThan(COMPARISON_PIXEL_VALUE, HEIGHT),
-  equalToWidth: equalTo(COMPARISON_PIXEL_VALUE),
-  equalToHeight: equalTo(COMPARISON_PIXEL_VALUE, HEIGHT),
+  greaterThanWidth: greaterThan('comparisonValue'),
+  greaterThanHeight: greaterThan('comparisonValue', HEIGHT),
+  lessThanWidth: lessThan('comparisonValue'),
+  lessThanHeight: lessThan('comparisonValue', HEIGHT),
+  equalToWidth: equalTo('comparisonValue'),
+  equalToHeight: equalTo('comparisonValue', HEIGHT),
 
 
   // explicit computed width's by constant
-  greaterThanWithWidthConstant: greaterThan(COMPARISON_PIXEL_VALUE, WIDTH),
-  lessThanWithWidthConstant: lessThan(COMPARISON_PIXEL_VALUE, WIDTH),
-  equalToWithWidthConstant: equalTo(COMPARISON_PIXEL_VALUE, WIDTH),
+  greaterThanWithWidthConstant: greaterThan('comparisonValue', WIDTH),
+  lessThanWithWidthConstant: lessThan('comparisonValue', WIDTH),
+  equalToWithWidthConstant: equalTo('comparisonValue', WIDTH),
 });
