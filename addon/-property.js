@@ -5,12 +5,20 @@ import { get, getWithDefault } from "@ember/object";
 import { assert } from "@ember/debug";
 
 export default class SizeProperty extends ComputedProperty {
-  constructor(propertyFn) {
+  constructor(...args) {
     let propertyInstance;
 
-    // function calls happen on any get of the attached property
-    // or on `notifyPropertyChange`.
-    super(function parentPropertyFunction(property) {
+    // last argument should be the propertyFn
+    let propertyFn = args.pop();
+
+    // remaining arguments should be the dependent keys
+    let dependentKeys = args;
+
+    // function calls happen when:
+    //   * there is a get of the attached property
+    //   * `notifyPropertyChange` of this property
+    //   * one of the watched properties changes
+    function propertyFunctionWrapper(property) {
       let componentContext = this;
 
       assert(
@@ -26,7 +34,9 @@ export default class SizeProperty extends ComputedProperty {
       // property
       let element = getWithDefault(componentContext, 'element', null);
       return propertyFn.call(componentContext, element);
-    });
+    }
+
+    super(propertyFunctionWrapper, { dependentKeys });
 
     propertyInstance = this;
     this.detector = resizeDectectorFactory();
@@ -42,7 +52,7 @@ export default class SizeProperty extends ComputedProperty {
     );
 
     this.detector.removeAllListeners(element);
-    this.detector.listenTo(element, component.notifyPropertyChange.bind(component, property));
+    this.detector.listenTo(element, () => component.notifyPropertyChange(property));
   }
 
   componentTeardown(component) {
