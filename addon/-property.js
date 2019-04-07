@@ -26,9 +26,16 @@ export default class SizeProperty extends ComputedProperty {
         get(componentContext, "isComponent") === true
       );
 
-      // future handling of attached component/teardown
-      componentContext.on('didInsertElement', propertyInstance.componentSetup.bind(propertyInstance, componentContext, property));
-      componentContext.on('willDestroyElement', propertyInstance.componentTeardown.bind(propertyInstance, componentContext));
+      // future setup of component setup/teardown
+      componentContext.on(
+        'didInsertElement',
+        propertyInstance.componentSetup.bind(propertyInstance, componentContext, property)
+      );
+
+      componentContext.on(
+        'willDestroyElement',
+        propertyInstance.componentTeardown.bind(propertyInstance, componentContext)
+      );
 
       // call propertyFn whose value ends up being the value of the
       // property

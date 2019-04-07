@@ -22,9 +22,8 @@ export default Component.extend({
   equalToWidth: equalTo('comparisonValue'),
   equalToHeight: equalTo('comparisonValue', HEIGHT),
 
-
   // explicit computed width's by constant
   greaterThanWithWidthConstant: greaterThan('comparisonValue', WIDTH),
   lessThanWithWidthConstant: lessThan('comparisonValue', WIDTH),
-  equalToWithWidthConstant: equalTo('comparisonValue', WIDTH),
+  equalToWithWidthConstant: equalTo('comparisonValue', WIDTH)
 });
