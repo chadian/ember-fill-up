@@ -4,24 +4,26 @@ import { render, find } from '@ember/test-helpers';
 import waitForSizeChange from 'dummy/tests/helpers/wait-for-size-change';
 import hbs from 'htmlbars-inline-precompile';
 
-const COMPARISON_VALUE = 500;
-
 module('Integration | Component | comparison-computed', function(hooks) {
   setupRenderingTest(hooks);
+
+  hooks.beforeEach(function setComparisonValue() {
+    this.set('defaultComparisonValue', 500);
+  });
 
   // ensure that test constant used as a reference value matches
   // what is used internally with dummy test component and for
   // the rest of the tests
-  test('comparison values matches test constant', async function(assert) {
+  test('comparison values matches test comparison value passed in to component', async function(assert) {
     await render(hbs`
       <div id="comparisonValue">
-        {{#comparison-computed as |_|}}
+        {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
           {{_.comparisonValue}}
         {{/comparison-computed}}
       </div>
     `);
 
-    assert.equal(find('#comparisonValue').textContent.trim(), COMPARISON_VALUE);
+    assert.equal(find('#comparisonValue').textContent.trim(), this.defaultComparisonValue);
   });
 
   module('isEqualTo', function() {
@@ -30,7 +32,7 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 500px; height: 500px; }
         </style>
-        {{#comparison-computed as |_|}}
+        {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
           <div id="comparisonEqualToWidth">
             {{_.equalToWidth}}
           </div>
@@ -49,7 +51,7 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 499px; height: 499px; }
         </style>
-        {{#comparison-computed as |_|}}
+        {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
           <div id="comparisonEqualToWidth">
             {{_.equalToWidth}}
           </div>
@@ -70,10 +72,14 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 499px; height: 499px; }
         </style>
-        {{#comparison-computed as |_|}}
+
+        {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
           <div id="comparisonGreaterThanWidth">
             {{_.greaterThanWidth}}
           </div>
+
+          {{_.comparisonValue}}
+
           <div id="comparisonGreaterThanHeight" >
             {{_.greaterThanHeight}}
           </div>
@@ -96,7 +102,7 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 501px; height: 501px; }
         </style>
-        {{#comparison-computed as |_|}}
+        {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
           <div id="comparisonGreaterThanWidth">
             {{_.greaterThanWidth}}
           </div>
@@ -124,7 +130,7 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 499px; height: 499px; }
         </style>
-        {{#comparison-computed as |_|}}
+        {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
           <div id="comparisonLessThanWidth">
             {{_.lessThanWidth}}
           </div>
@@ -150,7 +156,7 @@ module('Integration | Component | comparison-computed', function(hooks) {
         <style>
           #ember-testing div { width: 501px; height: 501px; }
         </style>
-        {{#comparison-computed as |_|}}
+        {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
           <div id="comparisonLessThanWidth">
             {{_.lessThanWidth}}
           </div>
@@ -177,7 +183,7 @@ module('Integration | Component | comparison-computed', function(hooks) {
       <style>
         #ember-testing div { width: 501px; height: 501px; }
       </style>
-      {{#comparison-computed as |_|}}
+      {{#comparison-computed comparisonValue=defaultComparisonValue as |_|}}
         <div id="greaterThanWithWidthConstant" >
           {{_.greaterThanWithWidthConstant}}
         </div>
@@ -209,10 +215,10 @@ module('Integration | Component | comparison-computed', function(hooks) {
     );
   });
 
-  test('it can detect changes in the comparison property', async function(assert) {
+  test('it can detect changes in the comparison property (via change in dependentKey)', async function (assert) {
     this.set('comparisonValue', 500);
 
-    await render(hbs`
+    await render(hbs `
       <style>
         #ember-testing div { width: 500px; height: 500px; }
       </style>

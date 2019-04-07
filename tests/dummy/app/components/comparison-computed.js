@@ -8,12 +8,10 @@ import {
   equalTo
 } from "ember-fill-up";
 
-const COMPARISON_PIXEL_VALUE = 500;
-
 export default Component.extend({
   layout,
 
-  comparisonValue: COMPARISON_PIXEL_VALUE,
+  comparisonValue: 0,
 
   greaterThanWidth: greaterThan('comparisonValue'),
   greaterThanHeight: greaterThan('comparisonValue', HEIGHT),
