@@ -37,17 +37,19 @@ export function _meta(options) {
 
 export function match(currentValue, definitions) {
   let matchHash = definitions.reduce((matchHash, definition, i) => {
-    let { label, comparison } = definition;
-
     let previousDefinition = definitions[ i - 1 ] || {};
     let nextDefinition = definitions[ i + 1 ] || {};
 
     // will be backfilled on next iteration
-    if (nextDefinition.continuation) {
+    if (isStartOfLayer(definition, nextDefinition)) {
       return matchHash;
     }
 
     let result;
+    let {
+      label,
+      comparison
+    } = definition;
 
     if (definition.continuation || previousDefinition.continuation) {
       comparison = x => between(x, previousDefinition.value, definition.value);
@@ -65,7 +67,11 @@ export function match(currentValue, definitions) {
   return matchHash;
 }
 
+function isStartOfLayer(definition, nextDefinition) {
+  return !definition.continuation && nextDefinition.continuation;
+}
+
 function between(value, num1, num2) {
-  let sorted = [num1, num2].sort();
+  let sorted = [num1, num2].sort((a, b) => a - b);
   return value >= sorted[0] && value <= sorted[1];
 }
