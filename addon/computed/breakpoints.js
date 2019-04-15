@@ -52,7 +52,7 @@ export function match(currentValue, definitions) {
     } = definition;
 
     if (definition.continuation || previousDefinition.continuation) {
-      comparison = x => between(x, previousDefinition.value, definition.value);
+      comparison = x => rightClosedBetween(x, previousDefinition.value, definition.value);
       label = previousDefinition.label;
     }
 
@@ -71,7 +71,9 @@ function isStartOfLayer(definition, nextDefinition) {
   return !definition.continuation && nextDefinition.continuation;
 }
 
-function between(value, num1, num2) {
+// right-closed refers to a right-closed interval, meaning:
+// the value can not equal the larger right-sided number
+function rightClosedBetween(value, num1, num2) {
   let sorted = [num1, num2].sort((a, b) => a - b);
-  return value >= sorted[0] && value <= sorted[1];
+  return value >= sorted[0] && value < sorted[1];
 }
