@@ -1,4 +1,9 @@
 import SizeProperty from '../-property';
+import {
+  gt,
+  lt,
+  eq
+} from './helpers';
 
 export let WIDTH = Symbol();
 export let HEIGHT = Symbol();
@@ -27,6 +32,6 @@ export let size = () => new SizeProperty(element => {
   }
 });
 
-export let greaterThan = dimensionComparison((value, number) => value > number);
-export let lessThan = dimensionComparison((value, number) => value < number);
-export let equalTo = dimensionComparison((value, number) => value === number);
+export let greaterThan = dimensionComparison(gt);
+export let lessThan = dimensionComparison(lt);
+export let equalTo = dimensionComparison(eq);

@@ -1,18 +1,18 @@
-// export function breakpoints(...definitions) {
-//   // return a computed property that can take the definitions
-//   // and determine what to return...
-//   // a hash of true or false of labels on whether or not they match the condition
+import {
+  lte,
+  gte,
+  betweenRightClosed
+} from '../comparisons/helpers';
 
-
-//   return;
-// }
+// TODO:
+// export function breakpoints(...definitions)
 
 export function to(toValue, label) {
-  return _meta({ label, value: toValue, comparison: x => x <= toValue });
+  return _meta({ label, value: toValue, comparison: x => lte(x, toValue) });
 }
 
 export function from(fromValue, label) {
-  return _meta({ label, value: fromValue, comparison: x => x >= fromValue });
+  return _meta({ label, value: fromValue, comparison: x => gte(x, fromValue) });
 }
 
 export function layer(layeredValue, label) {
@@ -52,7 +52,7 @@ export function match(currentValue, definitions) {
     } = definition;
 
     if (definition.continuation || previousDefinition.continuation) {
-      comparison = x => rightClosedBetween(x, previousDefinition.value, definition.value);
+      comparison = x => betweenRightClosed(x, previousDefinition.value, definition.value);
       label = previousDefinition.label;
     }
 
@@ -69,11 +69,4 @@ export function match(currentValue, definitions) {
 
 function isStartOfLayer(definition, nextDefinition) {
   return !definition.continuation && nextDefinition.continuation;
-}
-
-// right-closed refers to a right-closed interval, meaning:
-// the value can not equal the larger right-sided number
-function rightClosedBetween(value, num1, num2) {
-  let sorted = [num1, num2].sort((a, b) => a - b);
-  return value >= sorted[0] && value < sorted[1];
 }
