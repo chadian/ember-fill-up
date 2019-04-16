@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { to, from, layer, match } from 'ember-fill-up/computed/breakpoints';
+import { to, from, layer, match } from 'ember-fill-up/breakpoints/computed';
 
 module('Unit | computed | breakpoints', function() {
   test('it works with to breapoint definition', function(assert) {

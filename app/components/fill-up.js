@@ -1,1 +1,1 @@
-export { default } from 'ember-fill-up/components/fill-up';
+export { default } from 'ember-fill-up/fill-up/component';

@@ -6,4 +6,4 @@ export {
   greaterThan,
   lessThan,
   equalTo
-} from './computed/comparison';
+} from './comparisons/computed';
