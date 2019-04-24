@@ -14,28 +14,22 @@ export default class SizeProperty extends ComputedProperty {
     // remaining arguments should be the dependent keys
     let dependentKeys = args;
 
-    // function calls happen when:
-    //   * there is a get of the attached property
+    // `propertyFunctionWrapper` function called when:
+    //   * there is a `get` of the attached property
     //   * `notifyPropertyChange` of this property
     //   * one of the watched properties changes
     function propertyFunctionWrapper(property) {
       let componentContext = this;
+      let componentSetup = propertyInstance.componentSetup.bind(propertyInstance, componentContext, property);
+      let componentTeardown = propertyInstance.componentTeardown.bind(propertyInstance, componentContext);
 
       assert(
         "Must be used on a component",
         get(componentContext, "isComponent") === true
       );
 
-      // future setup of component setup/teardown
-      componentContext.on(
-        'didInsertElement',
-        propertyInstance.componentSetup.bind(propertyInstance, componentContext, property)
-      );
-
-      componentContext.on(
-        'willDestroyElement',
-        propertyInstance.componentTeardown.bind(propertyInstance, componentContext)
-      );
+      componentContext.on('didInsertElement', componentSetup);
+      componentContext.on('willDestroyElement', componentTeardown);
 
       // call propertyFn whose value ends up being the value of the
       // property
@@ -47,7 +41,6 @@ export default class SizeProperty extends ComputedProperty {
 
     propertyInstance = this;
     this.detector = resizeDectectorFactory();
-    this.propertyFn = propertyFn;
   }
 
   componentSetup(component, property) {
