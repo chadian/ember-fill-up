@@ -8,8 +8,6 @@ import {
 export let WIDTH = Symbol();
 export let HEIGHT = Symbol();
 
-let defaultPropertyFn = element => element;
-
 let dimensionComparison = (compareFunction) => ((comparisonProperty, dimension = WIDTH) => {
   return new SizeProperty(comparisonProperty, function (element) {
     let number = Number(this.get(comparisonProperty));
@@ -23,7 +21,12 @@ let dimensionComparison = (compareFunction) => ((comparisonProperty, dimension =
   });
 });
 
-export let sizeChange = (fn) => new SizeProperty(typeof fn === 'function' ? fn : defaultPropertyFn);
+export let sizeChange = (...args) => {
+  let fn = args.pop() || (element => element);
+  let properties = args;
+
+  return new SizeProperty(...properties, fn);
+};
 
 export let size = () => new SizeProperty(element => {
   return {

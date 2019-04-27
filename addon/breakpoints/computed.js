@@ -1,72 +1,55 @@
+import SizeProperty from '../-property';
 import {
-  lte,
-  gte,
+  lt as _lt,
+  lte as _lte,
+  gt as _gt,
+  gte as _gte,
+  eq as _eq,
   betweenRightClosed
 } from '../comparisons/helpers';
 
-// TODO:
-// export function breakpoints(...definitions)
-
-export function to(toValue, label) {
-  return _meta({ label, value: toValue, comparison: x => lte(x, toValue) });
+export function lt(definedValue, label) {
+  return buildDefinition(label, value => _lt(value, definedValue));
 }
 
-export function from(fromValue, label) {
-  return _meta({ label, value: fromValue, comparison: x => gte(x, fromValue) });
+export function lte(definedValue, label) {
+  return buildDefinition(label, value => _lte(value, definedValue));
 }
 
-export function layer(layeredValue, label) {
-  return _meta({ label, continuation: true, value: layeredValue })
+export function gt(definedValue, label) {
+  return buildDefinition(label, value => _gt(value, definedValue));
 }
 
-export function _meta(options) {
-  let {
-    label = '',
-    value,
-    comparison = () => {},
-    continuation
-  } = options;
+export function gte(definedValue, label) {
+  return buildDefinition(label, value => _gte(value, definedValue));
+}
 
+export function eq(definedValue, label) {
+  return buildDefinition(label, value => _eq(value, definedValue));
+}
+
+export function between(firstDefined, secondDefined, label) {
+  return buildDefinition(label, value => betweenRightClosed(value, firstDefined, secondDefined));
+}
+
+function buildDefinition(label, comparisonFunction) {
   return {
     label,
-    value,
-    comparison,
-    continuation
+    comparison: comparisonFunction
   }
 }
 
-export function match(currentValue, definitions) {
-  let matchHash = definitions.reduce((matchHash, definition, i) => {
-    let previousDefinition = definitions[ i - 1 ] || {};
-    let nextDefinition = definitions[ i + 1 ] || {};
+export function definitionClassNames(currentValue, definitions) {
+  let classNames = definitions
+    .filter(({ comparison }) => comparison(currentValue) === true)
+    .map(({ label }) => label)
+    .join(' ');
 
-    // will be backfilled on next iteration
-    if (isStartOfLayer(definition, nextDefinition)) {
-      return matchHash;
-    }
-
-    let result;
-    let {
-      label,
-      comparison
-    } = definition;
-
-    if (definition.continuation || previousDefinition.continuation) {
-      comparison = x => betweenRightClosed(x, previousDefinition.value, definition.value);
-      label = previousDefinition.label;
-    }
-
-    result = comparison(currentValue);
-
-    return Object.assign(
-      matchHash,
-      label ? { [label]: result } : {}
-    );
-  }, {});
-
-  return matchHash;
+  return classNames;
 }
 
-function isStartOfLayer(definition, nextDefinition) {
-  return !definition.continuation && nextDefinition.continuation;
+export function breakpointClassNames(...definitions) {
+  return new SizeProperty(
+    ({ offsetWidth }) => definitionClassNames(offsetWidth, definitions)
+  );
 }
