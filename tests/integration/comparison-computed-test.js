@@ -4,7 +4,7 @@ import { render, find } from '@ember/test-helpers';
 import waitForSizeChange from 'dummy/tests/helpers/wait-for-size-change';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | comparison-computed', function(hooks) {
+module('Integration | comparison-computed', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function setComparisonValue() {
