@@ -7,9 +7,9 @@ import {
   eq,
   between,
   definitionClassNames
-} from 'ember-fill-up/breakpoints/computed';
+} from 'ember-fill-up/breakpoints/definitions';
 
-module('Unit | computed | breakpoints', function() {
+module('Unit | breakpoints', function() {
   module('definitions', function() {
     test('lt definition', function(assert) {
       let definition = lt(400, 'lt label');
@@ -68,7 +68,7 @@ module('Unit | computed | breakpoints', function() {
     });
   });
 
-  module('breakpointClasses', function () {
+  module('definitionClassNames', function () {
     test('it generates a css class string for truthy values', function(assert) {
       let definitions = [
         eq(400, 'truthy-equal'),

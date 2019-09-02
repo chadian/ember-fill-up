@@ -1,8 +1,9 @@
+export { default as breakpointClassNames } from './computed';
+
 export {
   lt,
   lte,
   gt,
   gte,
   between,
-  breakpointClassNames
-} from './computed';
+} from './definitions';
