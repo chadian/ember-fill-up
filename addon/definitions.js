@@ -5,13 +5,13 @@ import {
   gte as _gte,
   eq as _eq,
   betweenRightClosed
-} from '../comparisons/helpers';
+} from "./utils";
 
 function buildDefinition(label, comparisonFunction) {
   return {
     label,
     comparison: comparisonFunction
-  }
+  };
 }
 
 export function lt(definedValue, label) {
@@ -35,18 +35,17 @@ export function eq(definedValue, label) {
 }
 
 export function between(firstDefined, secondDefined, label) {
-  return buildDefinition(label, value => betweenRightClosed(value, firstDefined, secondDefined));
+  return buildDefinition(label, value =>
+    betweenRightClosed(value, firstDefined, secondDefined)
+  );
 }
 
-export function definitionClassNames(currentValue, definitions) {
-  let classNames = definitions
-    .filter(({
-      comparison
-    }) => comparison(currentValue) === true)
-    .map(({
-      label
-    }) => label)
-    .join(' ');
-
-  return classNames;
+export function definitionsMap(currentValue, definitions) {
+  return definitions
+    .reduce((map, {label, comparison}) => {
+      return {
+        ...map,
+        [label]: comparison(currentValue)
+      }
+    }, {});
 }

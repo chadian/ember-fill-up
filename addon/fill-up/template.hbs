@@ -1,1 +1,10 @@
-{{yield elementSize}}
+<div
+  class={{concat "ember-fill-up" this.classNames}}
+  {{fill-up onChange=(action this.onElementChange)}}
+  ...attributes
+>
+  {{yield (hash
+    width=this.width
+    height=this.height
+  )}}
+</div>
