@@ -23,7 +23,6 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "element-resize-detector": "^1.1.15",
     "ember-auto-import": "^1.2.20",
     "ember-cli-babel": "^7.7.3",
     "ember-cli-htmlbars": "^3.0.1"
@@ -52,7 +51,8 @@
     "eslint-plugin-ember": "^6.2.0",
     "eslint-plugin-node": "^9.0.1",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.8.4"
+    "qunit-dom": "^0.8.4",
+    "sinon": "^7.5.0"
   },
   "engines": {
     "node": "8.* || >= 10.*"

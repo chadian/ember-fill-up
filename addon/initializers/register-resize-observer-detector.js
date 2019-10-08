@@ -25,6 +25,8 @@ export function initialize(application) {
 
       removeListener(element, handler) {
         const observers = this.observers.get(handler);
+
+        // eslint-disable-next-line ember/no-observers
         observers.forEach(observer => observer.unobserve(element));
       }
     })
