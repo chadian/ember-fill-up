@@ -19,13 +19,6 @@ export default Component.extend({
 
   onElementChange(element) {
     if (element) {
-      this.onChange({
-        element: this.fillUpElement,
-        width: this.width,
-        height: this.height,
-        breakpoints: this.breakpointsMap
-      });
-
       const width = element.clientWidth;
       const height = element.clientHeight;
 
@@ -33,12 +26,25 @@ export default Component.extend({
       this.set("width", width);
       this.set("height", height);
 
+      this.onChange({
+        element: this.fillUpElement,
+        width: this.width,
+        height: this.height,
+        breakpoints: this.breakpointsMap
+      });
+
       if (this.breakpoints) {
         const map = definitionsMap(this.width, this.breakpoints);
+
         this.set("breakpointsMap", map);
 
         for (const key in map) {
-          element.setAttribute(this.attributePrefix + key, map[key]);
+          const breakpointIsSet = map[key];
+          if (breakpointIsSet) {
+            element.setAttribute(this.attributePrefix + key, '');
+          } else {
+            element.removeAttribute(this.attributePrefix + key);
+          }
         }
       }
     }
