@@ -12,3 +12,89 @@
   grid-column-gap: 5%;
 }
 
+/* article */
+.article {
+  padding: 1rem 0;
+  max-width: 900px;
+}
+
+.article .on {
+  font-style: italic;
+  font-family: serif;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: black;
+  line-height: 35px;
+  text-align: center;
+  display: inline-block;
+}
+
+.article .title {
+  font-size: 1.75rem;
+  line-height: 1.5rem;
+}
+
+.article .author {
+  margin-top: 0.5rem;
+}
+
+.article .date {
+  margin: 1rem 0;
+}
+
+/* article medium */
+.article[fill-up-medium] .on {
+  border: 3px dashed black;
+  background-color: white;
+  color: black;
+}
+
+.article[fill-up-medium] .formatted-date {
+  text-decoration: underline;
+  margin-left: 1rem;
+}
+
+/* article large */
+.article[fill-up-large] {
+  font-size: 1.25rem;
+}
+
+.article[fill-up-large] .title {
+  text-align: center;
+}
+
+.article[fill-up-large] .author {
+  text-align: center;
+}
+
+.article[fill-up-large] .by {
+  text-decoration: underline;
+  margin-right: 1rem;
+}
+
+.article[fill-up-large] .author-name {
+ text-align: center;
+ letter-spacing: 0.2rem;
+}
+
+.article[fill-up-large] .date {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.article[fill-up-large] .on {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.25rem;
+}
+
+.article[fill-up-large] .post::first-letter {
+  font-size: 3rem;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 0 0.75rem;
+  margin-right: 0.25rem;
+}
