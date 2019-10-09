@@ -1,0 +1,14 @@
+.content {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: 25px;
+  justify-content: space-around;
+  justify-items: center;
+}
+
+.content[fill-up-medium] {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-column-gap: 5%;
+}
+
