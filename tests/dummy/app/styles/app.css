@@ -12,6 +12,32 @@
   grid-column-gap: 5%;
 }
 
+/* weather */
+.weather {
+  width: 100%;
+}
+
+.weather .temp {
+  color: gray;
+  font-size: 1.1em;
+}
+
+.weather .city {
+  font-size: 0.85em;
+}
+
+.weather .bottom-drawer {
+  font-size: 0.65em;
+}
+
+.weather.cold .bottom-drawer {
+  color: blue;
+}
+
+.weather.hot .bottom-drawer {
+  color: red;
+}
+
 /* article */
 .article {
   padding: 1rem 0;
