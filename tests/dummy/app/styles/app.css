@@ -6,10 +6,22 @@
   justify-items: center;
 }
 
+.section-heading {
+  grid-column: 1;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
 .content[fill-up-medium] {
   display: grid;
   grid-template-columns: 45% 45%;
   grid-column-gap: 5%;
+}
+
+.content[fill-up-medium] .section-heading {
+  grid-column: 1 / span 2;
+  text-align: center;
+  font-size: 2.5rem;
 }
 
 /* weather */
@@ -80,6 +92,11 @@
 .article[fill-up-medium] .formatted-date {
   text-decoration: underline;
   margin-left: 1rem;
+}
+
+.article[fill-up-medium] .author {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 /* article large */
