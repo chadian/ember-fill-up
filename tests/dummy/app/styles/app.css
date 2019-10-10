@@ -24,6 +24,36 @@
   font-size: 2.5rem;
 }
 
+/* github card / horizontal */
+.github-card-horizontal .github-repo-and-user {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid black;
+}
+
+.github-card-horizontal main {
+  font-size: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.github-card-horizontal main > * {
+  /* border: 1px solid blue; */
+  margin-bottom: 2rem;
+  margin-right: 4rem;
+  border-left: 2px solid black;
+  padding: 0.5rem 1rem;
+}
+
+.github-card-horizontal label {
+  display: block;
+  font-family: monospace;
+  letter-spacing: 0.15rem;
+  font-size: 1.5rem;
+}
+
 /* github card / vertical */
 .github-card-vertical .github-repo {
   font-size: 3rem;
