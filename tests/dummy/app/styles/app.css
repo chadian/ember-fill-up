@@ -24,6 +24,48 @@
   font-size: 2.5rem;
 }
 
+/* github-card / language */
+.github-card-programming-language {
+  display: flex;
+  align-items: center;
+}
+
+.github-card-programming-language .language-label {
+  margin-left: 1rem;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+}
+
+.github-card-programming-language .language-color {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.github-card-programming-language .language-color-yellow {
+  background-color: yellow;
+}
+
+.github-card-programming-language .language-color-purple {
+  background-color: rebeccapurple;
+}
+
+.github-card-programming-language .language-color-red {
+  background-color: red;
+}
+
+.github-card-programming-language .language-color-darkred {
+  background-color: darkred;
+}
+
+.github-card-programming-language .language-color-teal {
+  background-color: teal;
+}
+
+.github-card-programming-language .language-color-silver {
+  background-color: silver;
+}
+
 /* weather */
 .weather {
   width: 100%;
