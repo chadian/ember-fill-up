@@ -1,0 +1,35 @@
+<FillUp
+  class={{concat "weather " (if this.isCold "cold" "hot")}}
+  style="font-size: {{this.fontSize}}px;"
+
+  @onChange={{action "onChange"}}
+  @breakpoints={{array
+    (fill-up-gt 300 label="small")
+    (fill-up-gt 450 label="medium")
+    (fill-up-gt 650 label="large")
+  }}
+as |F|>
+  <div class="top-drawer">
+    <span class="city">
+      {{this.city.name}}
+    </span>
+
+    {{#if F.breakpoints.medium}}
+      {{this.city.flag}}
+    {{/if}}
+
+    {{#unless F.breakpoints.small}}
+      <br>
+    {{/unless}}
+
+    <span class="temp">
+      {{this.temp}} °C 
+    </span>
+  </div>
+  {{#if F.breakpoints.large}}
+    <div class="bottom-drawer">
+      {{this.weather.label}}
+      {{this.weather.icon}}
+    </div>
+  {{/if}}
+</FillUp>

@@ -1,0 +1,14 @@
+<FillUp
+  class="github-card"
+
+  @breakpoints={{array
+    (fill-up-between 0 450 label="vertical")
+    (fill-up-gte 450 label="horizontal")
+  }}
+as |F|>
+    {{#if F.breakpoints.vertical}}
+      <GithubCard::Vertical @repo={{this.repo}} />
+    {{else}}
+      <GithubCard::Horizontal @repo={{this.repo}}/>
+    {{/if}}
+</FillUp>

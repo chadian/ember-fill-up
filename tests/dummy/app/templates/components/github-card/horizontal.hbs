@@ -1,0 +1,37 @@
+<div class="github-card-horizontal">
+  <GithubCard::Sidecar @repo={{@repo}} as |S|>
+    <header>
+      <div class="github-repo-and-user">
+        <div>{{S.name}}</div>
+        <div>/</div>
+        <div>{{S.user}}</div>
+      </div>
+    </header>
+    <main>
+      <div class="description">
+        <label>Description</label>
+        <div>{{S.description}}</div>
+      </div>
+      <div class="language">
+        <label>Language</label>
+        <div>{{S.language}}</div>
+      </div>
+      <div class="updated">
+        <label>Last updated</label>
+        <div>{{S.updatedDate}}</div>
+      </div>
+      <div class="commits">
+        <label>Number of commits</label>
+        <div>{{S.commits}}</div>
+      </div>
+      <div class="forks">
+        <label>Forks</label>
+        <div>{{S.forks}}</div>
+      </div>
+      <div class="github-stars">
+        <label>Github stars</label>
+        <div>{{S.stars}}</div>
+      </div>
+    </main>
+  </GithubCard::Sidecar>
+</div>

@@ -1,0 +1,12 @@
+{{yield
+  (hash
+    name=@repo.name
+    user=@repo.user
+    description=@repo.description
+    commits=@repo.commits
+    forks=@repo.forks
+    stars=(component 'github-card/stars' stars=@repo.stars)
+    language=(component 'github-card/programming-language' language=@repo.language)
+    updatedDate=this.formattedUpdatedDate
+  )
+}}
