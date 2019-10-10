@@ -1,1 +1,35 @@
-{{yield}}
+<div class="github-card-vertical">
+  <GithubCard::Sidecar @repo={{@repo}} as |S|>
+    <header>
+      <div class="github-repo">
+        {{S.name}}
+      </div>
+      <div class="user-container">
+        <span class="github-by">by</span>
+        <span class="github-user">{{S.user}}</span>
+      </div>
+      <div class="description">
+        {{S.description}}
+    </div>
+    </header>
+    <main>
+      <div class="language">
+        {{S.language}}
+      </div>
+      <div class="updated">
+        Updated {{S.updatedDate}}
+      </div>
+      <div class="commits">
+        Containing {{S.commits}} commits
+      </div>
+      <div class="forks">
+        Forked by {{S.forks}} people
+      </div>
+      <div class="github-stars">
+        <div>
+          This repo has {{S.stars}} stars
+        </div>
+      </div>
+    </main>
+  </GithubCard::Sidecar>
+</div>

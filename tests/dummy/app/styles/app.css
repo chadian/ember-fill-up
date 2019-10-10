@@ -24,6 +24,62 @@
   font-size: 2.5rem;
 }
 
+/* github card / vertical */
+.github-card-vertical .github-repo {
+  font-size: 3rem;
+  line-height: 0.9;
+}
+
+/* github card / vertical */
+.github-card-vertical .github-repo {
+  font-size: 3rem;
+  line-height: 0.9;
+}
+
+.github-card-vertical header {
+  border-bottom: 1px solid silver;
+  padding-bottom: 1rem;
+}
+
+.github-card-vertical main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.github-card-vertical main > * {
+  display: flex;
+  width: 50%;
+  height: 3rem;
+  align-items: center;
+  border-bottom: 1px dashed silver;
+  padding: 0.75rem 0;
+}
+
+.github-card-vertical .github-by {
+  color: gray;
+  font-style: italic;
+  font-family: serif;
+  font-size: 1.25rem;
+  margin-right: 1rem;
+}
+
+.github-card-vertical .github-user {
+  font-size: 2rem;
+  color: blue;
+}
+
+.github-card-vertical .description {
+  font-family: monospace;
+  font-size: 1.5rem;
+}
+
+.github-card-vertical .github-stars {
+  width: 100%;
+}
+
 /* github-card / language */
 .github-card-programming-language {
   display: flex;
