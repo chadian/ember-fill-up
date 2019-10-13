@@ -70,7 +70,6 @@ export default Component.extend({
     onChange({width}) {
       const fontSize = Math.min(Number(width) / 12, 65);
       this.set("fontSize", fontSize);
-      this.set("fontSize", fontSize);
     }
   }
 });
