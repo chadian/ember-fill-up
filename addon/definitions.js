@@ -7,45 +7,45 @@ import {
   betweenRightClosed
 } from "./utils";
 
-function buildDefinition(label, comparisonFunction) {
+function buildDefinition(comparisonFunction) {
   return {
-    label,
     comparison: comparisonFunction
   };
 }
 
-export function lt(definedValue, label) {
-  return buildDefinition(label, value => _lt(value, definedValue));
+export function lt(definedValue) {
+  return buildDefinition(value => _lt(value, definedValue));
 }
 
-export function lte(definedValue, label) {
-  return buildDefinition(label, value => _lte(value, definedValue));
+export function lte(definedValue) {
+  return buildDefinition(value => _lte(value, definedValue));
 }
 
-export function gt(definedValue, label) {
-  return buildDefinition(label, value => _gt(value, definedValue));
+export function gt(definedValue) {
+  return buildDefinition(value => _gt(value, definedValue));
 }
 
-export function gte(definedValue, label) {
-  return buildDefinition(label, value => _gte(value, definedValue));
+export function gte(definedValue) {
+  return buildDefinition(value => _gte(value, definedValue));
 }
 
-export function eq(definedValue, label) {
-  return buildDefinition(label, value => _eq(value, definedValue));
+export function eq(definedValue) {
+  return buildDefinition(value => _eq(value, definedValue));
 }
 
-export function between(firstDefined, secondDefined, label) {
-  return buildDefinition(label, value =>
+export function between(firstDefined, secondDefined) {
+  return buildDefinition(value =>
     betweenRightClosed(value, firstDefined, secondDefined)
   );
 }
 
 export function definitionsMap(currentValue, definitions) {
-  return definitions
-    .reduce((map, {label, comparison}) => {
+  return Object.keys(definitions)
+    .reduce((map, breakpointLabel) => {
+      const { comparison } = definitions[breakpointLabel];
       return {
         ...map,
-        [label]: comparison(currentValue)
-      }
+        [breakpointLabel]: comparison(currentValue)
+      };
     }, {});
 }

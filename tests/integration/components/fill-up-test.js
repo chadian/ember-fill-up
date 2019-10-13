@@ -195,12 +195,12 @@ module('Integration | Component | fill-up', function(hooks) {
 
   module('breakpoint definitions', function() {
     test("it sets breakpoint results as attrs on the element", async function(assert) {
-      this.set("breakpoints", [gt(50, "greater-than-50")]);
+      this.set("breakpoints", { "greater-than-50": gt(50) });
 
       await render(hbs`
         <style>
           .container {
-            width: 100px;
+            width: 51px;
             height: 125px;
           }
         </style>
@@ -212,20 +212,19 @@ module('Integration | Component | fill-up', function(hooks) {
         </div>
       `);
 
-      assert.equal(
+      assert.strictEqual(
         find(".ember-fill-up").getAttribute("fill-up-greater-than-50"),
-        "true"
+        ""
       );
     });
 
     test("it yields breakpoint results from external definition", async function(assert) {
-      this.set("breakpoints", [gt(50, "greater-than-50")]);
+      this.set("breakpoints", { "greater-than-50": gt(50) });
 
       await render(hbs`
         <style>
           .container {
-            width: 100px;
-            height: 125px;
+            width: 51px;
           }
         </style>
 
@@ -243,13 +242,12 @@ module('Integration | Component | fill-up', function(hooks) {
       await render(hbs`
         <style>
           .container {
-            width: 100px;
-            height: 125px;
+            width: 51px;
           }
         </style>
 
         <div class="container">
-          <FillUp @breakpoints={{array (fill-up-gt 50 label="greater-than-50")}} as |F|>
+          <FillUp @breakpoints={{hash greater-than-50=(fill-up-gt 50)}} as |F|>
             breakpoints-greater-than-50: {{F.breakpoints.greater-than-50}}
           </FillUp>
         </div>
@@ -260,7 +258,7 @@ module('Integration | Component | fill-up', function(hooks) {
   });
 
   module('#onChange', function() {
-    test('it can use an onChange callback when things change', async function(assert) {
+    test('it can use an onChange callback when resize change is triggered', async function(assert) {
       const onChange = sinon.stub();
       this.set('onChange', onChange);
 
@@ -277,28 +275,21 @@ module('Integration | Component | fill-up', function(hooks) {
         </style>
 
         <div class="container">
-          <FillUp @onChange={{this.onChange}} @breakpoints={{array (fill-up-gt 50 label="greater-than-50")}} as |F|>
+          <FillUp
+            @onChange={{this.onChange}}
+            @breakpoints={{hash greater-than-50=(fill-up-gt 50)}}
+          as |F|>
             Hello World!
           </FillUp>
         </div>
       `);
 
-      assert.equal(onChange.callCount, 2);
-
       const firstCallArg = onChange.firstCall.args[0];
-      const secondCallArg = onChange.secondCall.args[0];
 
-      assert.equal(firstCallArg.width, null);
-      assert.equal(firstCallArg.height, null);
-      assert.notOk(firstCallArg.element);
+      assert.equal(firstCallArg.width, 100);
+      assert.equal(firstCallArg.height, 125);
+      assert.ok(firstCallArg.element);
       assert.equal(firstCallArg.breakpoints, null);
-
-      assert.equal(secondCallArg.width, 100);
-      assert.equal(secondCallArg.height, 125);
-      assert.ok(secondCallArg.element);
-      assert.deepEqual(secondCallArg.breakpoints, {
-        'greater-than-50': true
-      });
     });
   })
 });
