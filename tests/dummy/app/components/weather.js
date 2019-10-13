@@ -1,4 +1,6 @@
 import Component from '@ember/component';
+import { computed } from "@ember/object";
+import { htmlSafe } from "@ember/template";
 import faker from 'faker';
 import layout from '../templates/components/weather';
 
@@ -46,6 +48,10 @@ export default Component.extend({
   temp: '',
   weather: '',
   isCold: false,
+
+  responsiveFontStyle: computed('fontSize', function() {
+    return htmlSafe(`font-size: ${this.fontSize}px;`);
+  }),
 
   init() {
     this._super(...arguments);

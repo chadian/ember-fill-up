@@ -6,9 +6,9 @@
     (fill-up-gte 450 label="horizontal")
   }}
 as |F|>
-    {{#if F.breakpoints.vertical}}
-      <GithubCard::Vertical @repo={{this.repo}} />
-    {{else}}
-      <GithubCard::Horizontal @repo={{this.repo}}/>
-    {{/if}}
+  {{#if F.breakpoints.vertical}}
+    <GithubCard::Vertical @repo={{this.repo}} />
+  {{else}}
+    <GithubCard::Horizontal @repo={{this.repo}}/>
+  {{/if}}
 </FillUp>
