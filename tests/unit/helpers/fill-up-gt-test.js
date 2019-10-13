@@ -6,9 +6,8 @@ module('Unit | Helper | fill-up-gt', function(hooks) {
   setupTest(hooks);
 
   test('generates a gt definition', function(assert) {
-    let result = fillUpGt([42], {label: 'gt-42'});
+    let result = fillUpGt([42]);
 
-    assert.equal(result.label, 'gt-42');
     assert.equal(result.comparison(42), false);
     assert.equal(result.comparison(43), true);
     assert.equal(result.comparison(41), false);
