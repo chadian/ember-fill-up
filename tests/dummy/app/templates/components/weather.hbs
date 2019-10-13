@@ -5,10 +5,10 @@
   style={{responsiveFontStyle}}
 
   @onChange={{action "onChange"}}
-  @breakpoints={{array
-    (fill-up-gt 300 label="small")
-    (fill-up-gt 450 label="medium")
-    (fill-up-gt 650 label="large")
+  @breakpoints={{hash
+    small=(fill-up-gt 300)
+    medium=(fill-up-gt 450)
+    large=(fill-up-gt 650)
   }}
 as |F|>
   <div class="top-drawer">

@@ -33,10 +33,10 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    this.set('breakpoints', [
-      between(550, 700, "medium"),
-      gt(700, "large"),
-    ]);
+    this.set('breakpoints', {
+      medium: between(550, 700),
+      large: gt(700),
+    });
 
     this.set("title", faker.random.arrayElement(blogTitles));
     this.set("date", faker.date.past());
