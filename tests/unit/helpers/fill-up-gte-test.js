@@ -1,11 +1,11 @@
-import { fillUpGte } from "dummy/helpers/fill-up-gte";
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
+import { fillUpGte } from 'dummy/helpers/fill-up-gte';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-module("Unit | Helper | fill-up-gte", function(hooks) {
+module('Unit | Helper | fill-up-gte', function(hooks) {
   setupTest(hooks);
 
-  test("generates a gte definition", function(assert) {
+  test('generates a gte definition', function(assert) {
     let result = fillUpGte([42]);
 
     assert.equal(result.comparison(42), true);

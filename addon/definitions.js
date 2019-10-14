@@ -5,7 +5,7 @@ import {
   gte as _gte,
   eq as _eq,
   betweenRightClosed
-} from "./utils";
+} from './utils';
 
 function buildDefinition(comparisonFunction) {
   return {
@@ -34,18 +34,15 @@ export function eq(definedValue) {
 }
 
 export function between(firstDefined, secondDefined) {
-  return buildDefinition(value =>
-    betweenRightClosed(value, firstDefined, secondDefined)
-  );
+  return buildDefinition(value => betweenRightClosed(value, firstDefined, secondDefined));
 }
 
 export function definitionsMap(currentValue, definitions) {
-  return Object.keys(definitions)
-    .reduce((map, breakpointLabel) => {
-      const { comparison } = definitions[breakpointLabel];
-      return {
-        ...map,
-        [breakpointLabel]: comparison(currentValue)
-      };
-    }, {});
+  return Object.keys(definitions).reduce((map, breakpointLabel) => {
+    const { comparison } = definitions[breakpointLabel];
+    return {
+      ...map,
+      [breakpointLabel]: comparison(currentValue)
+    };
+  }, {});
 }

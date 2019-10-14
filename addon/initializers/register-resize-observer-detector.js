@@ -1,17 +1,15 @@
-import EmberObject from "@ember/object";
+import EmberObject from '@ember/object';
 
 export function initialize(application) {
   application.register(
-    "resize-detector:resize-observer",
+    'resize-detector:resize-observer',
     EmberObject.extend({
       init() {
-        this.set("observers", new WeakMap());
+        this.set('observers', new WeakMap());
       },
 
       listenTo(element, handler) {
-        const resizeObserver = new ResizeObserver(([{ target: element }]) =>
-          handler(element)
-        );
+        const resizeObserver = new ResizeObserver(([{ target: element }]) => handler(element));
         resizeObserver.observe(element);
         let observers = this.observers.get(handler);
 

@@ -12,7 +12,7 @@ const blogTitles = [
   'Javascript is alive!!',
   'Ember Strikes Back!',
   'Javascript community unites, embraces tradeoffs',
-  'Copenhagen — World\'s Most Beauitful City',
+  "Copenhagen — World's Most Beauitful City",
   'EmberFest 2019, a conference to remember!'
 ];
 
@@ -27,7 +27,12 @@ export default Component.extend({
   post: '',
 
   formattedDate: computed('date', function() {
-    return this.date.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    return this.date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
   }),
 
   init() {
@@ -35,11 +40,11 @@ export default Component.extend({
 
     this.set('breakpoints', {
       medium: between(550, 700),
-      large: gt(700),
+      large: gt(700)
     });
 
-    this.set("title", faker.random.arrayElement(blogTitles));
-    this.set("date", faker.date.past());
+    this.set('title', faker.random.arrayElement(blogTitles));
+    this.set('date', faker.date.past());
     this.set('author', faker.name.findName());
     this.set('post', faker.lorem.paragraphs(2));
   }

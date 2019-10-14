@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import {computed} from '@ember/object';
+import { computed } from '@ember/object';
 import layout from '../../templates/components/github-card/stars';
 
 export default Component.extend({
@@ -13,7 +13,7 @@ export default Component.extend({
     const stars = this.stars;
 
     if (stars > 1000) {
-      return Math.round((stars / 1000) * 100) / 100 + "k";
+      return Math.round((stars / 1000) * 100) / 100 + 'k';
     }
 
     return stars;

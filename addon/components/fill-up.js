@@ -1,14 +1,14 @@
-import Component from "@ember/component";
-import layout from "../templates/components/fill-up";
-import { definitionsMap } from "../definitions";
+import Component from '@ember/component';
+import layout from '../templates/components/fill-up';
+import { definitionsMap } from '../definitions';
 
 export default Component.extend({
   layout,
 
-  tagName: "",
+  tagName: '',
 
   // public args
-  attributePrefix: "fill-up-",
+  attributePrefix: 'fill-up-',
   onChange: () => {},
 
   // yieldables
@@ -22,9 +22,9 @@ export default Component.extend({
       const width = element.clientWidth;
       const height = element.clientHeight;
 
-      this.set("fillUpElement", element);
-      this.set("width", width);
-      this.set("height", height);
+      this.set('fillUpElement', element);
+      this.set('width', width);
+      this.set('height', height);
 
       this.onChange({
         element: this.fillUpElement,
@@ -36,7 +36,7 @@ export default Component.extend({
       if (this.breakpoints) {
         const map = definitionsMap(this.width, this.breakpoints);
 
-        this.set("breakpointsMap", map);
+        this.set('breakpointsMap', map);
 
         for (const key in map) {
           const breakpointIsSet = map[key];

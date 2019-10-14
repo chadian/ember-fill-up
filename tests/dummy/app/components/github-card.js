@@ -22,7 +22,7 @@ const repoNames = [
   'first-repo',
   'sample-app',
   'pretty-prototype'
-]
+];
 
 const repoDescriptions = [
   'This project will probably be the next big thing',
@@ -35,18 +35,12 @@ const repoDescriptions = [
   'Built by the City of Copenhagen'
 ];
 
-const repoLanguages = [
-  'javascript',
-  'elixir',
-  'ruby',
-  'rust',
-  'go'
-];
+const repoLanguages = ['javascript', 'elixir', 'ruby', 'rust', 'go'];
 
 export default Component.extend({
   layout,
 
-  tagName: "",
+  tagName: '',
 
   repo: null,
 

@@ -24,8 +24,8 @@ export default Component.extend({
   languageLabel: computed('language', function() {
     let language = this.language.toUpperCase();
 
-    if (language === "JAVASCRIPT") {
-      return "JS";
+    if (language === 'JAVASCRIPT') {
+      return 'JS';
     }
 
     return language;

@@ -1,11 +1,11 @@
-import { fillUpBetween } from "dummy/helpers/fill-up-between";
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
+import { fillUpBetween } from 'dummy/helpers/fill-up-between';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-module("Unit | Helper | fill-up-between", function(hooks) {
+module('Unit | Helper | fill-up-between', function(hooks) {
   setupTest(hooks);
 
-  test("generates a between definition", function(assert) {
+  test('generates a between definition', function(assert) {
     let result = fillUpBetween([42, 45]);
 
     assert.equal(result.comparison(41), false);
