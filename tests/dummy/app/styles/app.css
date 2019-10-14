@@ -1,3 +1,12 @@
+/* typography */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* demo styles */
+
 .content {
   display: grid;
   grid-template-columns: 100%;
@@ -23,6 +32,22 @@
   text-align: center;
   font-size: 2.5rem;
 }
+
+
+.resize-area {
+  resize: horizontal;
+  overflow: auto;
+  padding: 1rem;
+  border: 1px dashed silver;
+  margin: 5rem auto;
+  width: 250px;
+}
+
+.resize-area > * {
+  margin: auto;
+}
+
+/* components */
 
 /* github card */
 .github-card {
@@ -273,11 +298,4 @@
   border: 1px solid black;
   padding: 0 0.75rem;
   margin-right: 0.25rem;
-}
-
-/* typography */
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
 }

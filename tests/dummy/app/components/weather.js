@@ -6,7 +6,7 @@ import layout from '../templates/components/weather';
 
 const cities = [
   { name: 'Berlin', flag: '🇩🇪'},
-  { name: 'Cuba', flag: '🇨🇺'},
+  { name: 'Havana', flag: '🇨🇺'},
   { name: 'Edmonton', flag: '🇨🇦'},
   { name: 'Portland', flag: '🇺🇸'},
   { name: 'Brooklyn', flag: '🇺🇸'},
