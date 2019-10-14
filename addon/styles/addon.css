@@ -1,0 +1,10 @@
+/*
+  these properties can be unset, but in most
+  cases you want the ember-fill-up component
+  to fill its container. The layout or
+  container should provide the constraints.
+*/
+.ember-fill-up {
+  width: 100%;
+  height: 100%;
+}
