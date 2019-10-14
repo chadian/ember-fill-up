@@ -11,7 +11,7 @@ export default class FillUpModifierManager {
     return instance;
   }
 
-  installModifier(instance, element/*, args*/) {
+  installModifier(instance, element /*, args*/) {
     instance.element = element;
     instance.detector = this.detector;
 

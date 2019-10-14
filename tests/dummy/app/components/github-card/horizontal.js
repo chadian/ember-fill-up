@@ -4,7 +4,7 @@ import layout from '../../templates/components/github-card/horizontal';
 export default Component.extend({
   layout,
 
-  tagName: "",
+  tagName: '',
 
   repo: null
 });

@@ -3,6 +3,4 @@
 // detection
 const SIZE_CHANGE_WAIT_TIME_IN_MS = 250;
 
-export default () => new Promise(
-  resolve => setTimeout(resolve, SIZE_CHANGE_WAIT_TIME_IN_MS)
-);
+export default () => new Promise(resolve => setTimeout(resolve, SIZE_CHANGE_WAIT_TIME_IN_MS));

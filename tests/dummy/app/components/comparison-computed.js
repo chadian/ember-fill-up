@@ -1,12 +1,6 @@
 import Component from '@ember/component';
 import layout from '../templates/components/comparison-computed';
-import {
-  WIDTH,
-  HEIGHT,
-  greaterThan,
-  lessThan,
-  equalTo
-} from "ember-fill-up";
+import { WIDTH, HEIGHT, greaterThan, lessThan, equalTo } from 'ember-fill-up';
 
 export default Component.extend({
   layout,

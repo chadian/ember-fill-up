@@ -4,7 +4,7 @@ import { find, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import waitForSizeChange from 'dummy/tests/helpers/wait-for-size-change';
 import { gt } from 'ember-fill-up/definitions';
-import * as sinon from "sinon";
+import * as sinon from 'sinon';
 
 module('Integration | Component | fill-up', function(hooks) {
   setupRenderingTest(hooks);
@@ -64,7 +64,7 @@ module('Integration | Component | fill-up', function(hooks) {
     });
 
     test('it reports width and height excluding borders', async function(assert) {
-      await render(hbs `
+      await render(hbs`
         <style>
           #container {
             box-sizing: content-box;
@@ -97,7 +97,7 @@ module('Integration | Component | fill-up', function(hooks) {
     });
 
     test('it detects changes in width and height', async function(assert) {
-      await render(hbs `
+      await render(hbs`
         <style>
           #container {
             width: 100px;
@@ -118,9 +118,9 @@ module('Integration | Component | fill-up', function(hooks) {
       assert.equal(find('#width').textContent.trim(), 'width: 100');
       assert.equal(find('#height').textContent.trim(), 'height: 125');
 
-      let container = find("#container");
-      container.style.width = "300px";
-      container.style.height = "600px";
+      let container = find('#container');
+      container.style.width = '300px';
+      container.style.height = '600px';
 
       await waitForSizeChange();
 
@@ -130,7 +130,7 @@ module('Integration | Component | fill-up', function(hooks) {
   });
 
   module('curly component invokation', function() {
-    test("it renders", async function(assert) {
+    test('it renders', async function(assert) {
       await render(hbs`
         <style>
           .ember-fill-up {
@@ -149,20 +149,20 @@ module('Integration | Component | fill-up', function(hooks) {
         {{/fill-up}}
       `);
 
-      assert.equal(find("#width").textContent.trim(), "width: 100");
-      assert.equal(find("#height").textContent.trim(), "height: 125");
+      assert.equal(find('#width').textContent.trim(), 'width: 100');
+      assert.equal(find('#height').textContent.trim(), 'height: 125');
 
-      let container = find(".ember-fill-up");
-      container.style.width = "300px";
-      container.style.height = "600px";
+      let container = find('.ember-fill-up');
+      container.style.width = '300px';
+      container.style.height = '600px';
 
       await waitForSizeChange();
 
-      assert.equal(find("#width").textContent.trim(), "width: 300");
-      assert.equal(find("#height").textContent.trim(), "height: 600");
+      assert.equal(find('#width').textContent.trim(), 'width: 300');
+      assert.equal(find('#height').textContent.trim(), 'height: 600');
     });
 
-    test("it supports additional classes via `classNames`", async function(assert) {
+    test('it supports additional classes via `classNames`', async function(assert) {
       await render(hbs`
         <style>
           #container {
@@ -188,14 +188,14 @@ module('Integration | Component | fill-up', function(hooks) {
         </div>
       `);
 
-      assert.equal(find("#width").textContent.trim(), "width: 100");
-      assert.equal(find("#height").textContent.trim(), "height: 125");
+      assert.equal(find('#width').textContent.trim(), 'width: 100');
+      assert.equal(find('#height').textContent.trim(), 'height: 125');
     });
   });
 
   module('breakpoint definitions', function() {
-    test("it sets breakpoint results as attrs on the element", async function(assert) {
-      this.set("breakpoints", { "greater-than-50": gt(50) });
+    test('it sets breakpoint results as attrs on the element', async function(assert) {
+      this.set('breakpoints', { 'greater-than-50': gt(50) });
 
       await render(hbs`
         <style>
@@ -212,14 +212,11 @@ module('Integration | Component | fill-up', function(hooks) {
         </div>
       `);
 
-      assert.strictEqual(
-        find(".ember-fill-up").getAttribute("fill-up-greater-than-50"),
-        ""
-      );
+      assert.strictEqual(find('.ember-fill-up').getAttribute('fill-up-greater-than-50'), '');
     });
 
-    test("it yields breakpoint results from external definition", async function(assert) {
-      this.set("breakpoints", { "greater-than-50": gt(50) });
+    test('it yields breakpoint results from external definition', async function(assert) {
+      this.set('breakpoints', { 'greater-than-50': gt(50) });
 
       await render(hbs`
         <style>
@@ -238,7 +235,7 @@ module('Integration | Component | fill-up', function(hooks) {
       assert.equal(find('.ember-fill-up').textContent.trim(), 'breakpoints-greater-than-50: true');
     });
 
-    test("it yields breakpoint results from helper definition", async function(assert) {
+    test('it yields breakpoint results from helper definition', async function(assert) {
       await render(hbs`
         <style>
           .container {
@@ -291,5 +288,5 @@ module('Integration | Component | fill-up', function(hooks) {
       assert.ok(firstCallArg.element);
       assert.equal(firstCallArg.breakpoints, null);
     });
-  })
+  });
 });
