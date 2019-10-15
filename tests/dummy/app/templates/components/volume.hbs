@@ -1,0 +1,19 @@
+<FillUp
+  class="volume demo-bottom-margin"
+  @breakpoints={{hash
+    off=(fill-up-between 0 151 dimension="height")
+    quiet=(fill-up-between 151 300 dimension="height")
+    loud=(fill-up-between 300 450 dimension="height")
+    loudest=(fill-up-gte 450 dimension="height")
+  }}
+as |F|>
+  {{#if F.breakpoints.off}}
+    🔇
+  {{else if F.breakpoints.quiet}}
+    🔈
+  {{else if F.breakpoints.loud}}
+    🔉
+  {{else if F.breakpoints.loudest}}
+    🔊
+  {{/if}}
+</FillUp>

@@ -49,6 +49,36 @@ body {
 
 /* components */
 
+/* volume */
+.volume {
+  width: 150px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  min-height: 3rem;
+}
+
+.volume[fill-up-off] {
+  font-size: 3rem;
+  background-color: #00044F;
+}
+
+.volume[fill-up-quiet] {
+  font-size: 5rem;
+  background-color: #00077F;
+}
+
+.volume[fill-up-loud] {
+ font-size: 8rem;
+ background-color: #000AAF;
+}
+
+.volume[fill-up-loudest] {
+ font-size: 13rem;
+ background-color: #000FFF;
+}
 /* github card */
 .github-card {
   width: 100%;
