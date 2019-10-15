@@ -43,6 +43,10 @@ body {
   width: 250px;
 }
 
+.resize-area.vertical {
+  resize: vertical;
+}
+
 .resize-area > * {
   margin: auto;
 }
@@ -79,6 +83,16 @@ body {
  font-size: 13rem;
  background-color: #000FFF;
 }
+
+.demo-volume-bottom-margin {
+  margin-bottom: 400px;
+}
+
+.demo-volume-bottom-margin > .resize-area {
+  height: 100px;
+  min-height: 100px;
+}
+
 /* github card */
 .github-card {
   width: 100%;
