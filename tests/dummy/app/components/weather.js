@@ -58,6 +58,7 @@ export default Component.extend({
 
     const city = faker.random.arrayElement(cities);
     this.set('city', city);
+
     // remove city from the array so it's not reused
     cities.splice(cities.indexOf(city), 1);
 
@@ -77,5 +78,10 @@ export default Component.extend({
       const fontSize = Math.min(Number(width) / 12, 65);
       this.set('fontSize', fontSize);
     }
+  },
+
+  willDestroy() {
+    // put the city back so we don't run out of cities
+    cities.push(this.city);
   }
 });
