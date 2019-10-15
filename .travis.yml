@@ -50,6 +50,7 @@ jobs:
         - npm run lint:hbs
         - npm run lint:js
         - npm test
+        - npm run build -- -prod # build app and prepare dist folder
 
     # we recommend new addons test the current and previous LTS
     # as well as latest stable release (bonus points to beta/canary)
