@@ -26,25 +26,38 @@ export default Component.extend({
       this.set('width', width);
       this.set('height', height);
 
-      this.onChange({
-        element: this.fillUpElement,
-        width: this.width,
-        height: this.height,
-        breakpoints: this.breakpointsMap
-      });
+      this.triggerOnChangeHandler();
+      this.handleBreakpointChanges();
+    }
+  },
 
-      if (this.breakpoints) {
-        const map = definitionsMap(this.width, this.breakpoints);
+  triggerOnChangeHandler() {
+    if (typeof this.onChange !== 'function') {
+      return;
+    }
 
-        this.set('breakpointsMap', map);
+    this.onChange({
+      element: this.fillUpElement,
+      width: this.width,
+      height: this.height,
+      breakpoints: this.breakpointsMap
+    });
+  },
 
-        for (const key in map) {
-          const breakpointIsSet = map[key];
-          if (breakpointIsSet) {
-            element.setAttribute(this.attributePrefix + key, '');
-          } else {
-            element.removeAttribute(this.attributePrefix + key);
-          }
+  handleBreakpointChanges() {
+    if (this.breakpoints) {
+      const dimensions = { width: this.width, height: this.height };
+      const map = definitionsMap(dimensions, this.breakpoints);
+
+      this.set('breakpointsMap', map);
+
+      // make changes to element
+      for (const key in map) {
+        const breakpointIsSet = map[key];
+        if (breakpointIsSet) {
+          this.fillUpElement.setAttribute(this.attributePrefix + key, '');
+        } else {
+          this.fillUpElement.removeAttribute(this.attributePrefix + key);
         }
       }
     }
