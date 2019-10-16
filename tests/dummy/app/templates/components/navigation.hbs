@@ -1,0 +1,35 @@
+<div class="navigation">
+  <button onclick={{action this.toggle}}>
+    <h2 class="toggle">
+      Navigation {{if this.expanded "-" "+"}}
+    </h2>
+  </button>
+  {{#if this.expanded}}
+    <ul>
+      <li>
+        {{#link-to "index"}}
+          Components within columns
+        {{/link-to}}
+        <div>
+          <em>
+            Watch components respond to the width constraints provided
+            by the column they're in. The components will cycle through
+            several breakpoints even as the layout swaps from a one to
+            two columns.
+          </em>
+        </div>
+      </li>
+      <li>
+        {{#link-to "single"}}
+          Single components
+        {{/link-to}}
+        <div>
+          <em>
+            See components on their own, with resize handles to
+            see how they react based on changes to their container
+          </em>
+        </div>
+      </li>
+    </ul>
+  {{/if}}
+</div>
