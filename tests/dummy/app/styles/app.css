@@ -7,6 +7,10 @@ body {
 
 /* demo styles */
 
+.text-center {
+  text-align: center;
+}
+
 .content {
   display: grid;
   grid-template-columns: 100%;
@@ -52,6 +56,20 @@ body {
 }
 
 /* components */
+
+/* navigation */
+.navigation {
+  max-width: 450px;
+}
+
+.navigation .toggle {
+  cursor: pointer;
+}
+
+.navigation button {
+  border: 2px solid rgb(15, 13, 13);
+  background-color: none;
+}
 
 /* volume */
 .volume {
