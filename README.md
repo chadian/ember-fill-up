@@ -1,7 +1,7 @@
 ⛽️ ember-fill-up [![Build Status](https://travis-ci.org/chadian/ember-fill-up.svg?branch=master)](https://travis-ci.org/chadian/ember-fill-up)
 ==============================================================================
 
-This addons gives you tools to help you create responsive components that are
+This addon gives you tools to help you create responsive components that are
 easier to develop, test, and use.
 
 Instead of using media queries `ember-fill-up` focuses on using container
