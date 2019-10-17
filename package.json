@@ -1,6 +1,6 @@
 {
   "name": "ember-fill-up",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Make use of element queries in your Ember apps.",
   "keywords": [
     "ember-addon"
