@@ -42,8 +42,48 @@ If your browser does not [support](https://caniuse.com/#feat=resizeobserver) `Re
 you can try ([1](https://github.com/que-etc/resize-observer-polyfill), [2](https://github.com/juggle/resize-observer)).
 
 
+## Polyfill Example
+
+For this example we can set up the `que-etc/resize-observer-polyfill` polyfill with
+our dummy app.
+
+First we install the polyfill dependencies:
+```
+npm install resize-observer-polyfill
+```
+
+Then we create an intializer:
+```
+ember g initializer setup-resize-detector-polyfill
+```
+
+Inside the initializer file `app/initializers/setup-resize-detector-polyfill.js` we add the `ResizeObserver` polyfill when it doesn't exist:
+```
+import ResizeObserver from 'resize-observer-polyfill';
+
+export function initialize() {
+  if (!window.ResizeObserver) {
+    // eslint-disable-next-line no-console
+    console.info(
+      'initializer:setup-resize-detector-polyfill: ResizeObserver not found. Polyfilling...'
+    );
+    window.ResizeObserver = ResizeObserver;
+  }
+}
+
+export default {
+  initialize
+};
+```
+
+Note: To be able to import from npm packages like this you maybe need to install [`ember-auto-import`](https://github.com/ef4/ember-auto-import) in your app.
+
+Your app should be all set now for older browsers that don't support `ResizeObserver`. As an example, the dummy app of this addon has been [setup](https://github.com/chadian/ember-fill-up/blob/master/tests/dummy/app/initializers/setup-resize-detector-polyfill.js) with this initializer.
+
+
 Usage
 ------------------------------------------------------------------------------
+
 ### Fill Up primatives
 
 1. `{{fill-up}}` element modifier
@@ -64,6 +104,9 @@ The `<FillUp />` component is using the element modifier behind the scenes, and 
 additional niceties making it easier to manage detected changes.
 
 One fundamental difference is that the component between the component and the element modifier is that the component has a root element where all content from the component's block is put. It's changes from this root element that are being tracked.
+
+### Using the `<FillUp />` component
+The `<FillUp />` component is pretty useful and abstracts away the element modifier while its api provides several handy responsive features.
 
 #### `breakpoints`
 The breakpoints can be passed in via definitions defined by template helpers in the template
@@ -123,8 +166,8 @@ can then be passed into the `@breakpoints` argument on the `<FillUp />` componen
   <FillUp @breakpoints={{this.breakpoints}}>
 ```
 
-#### Breakpoint attributes
-Any breakpoint definitions passed in on the `@breakpoints` argument of the `<FillUp />`
+#### `@breakpoints` argument
+Any breakpoint definitions passed in to the `@breakpoints` argument of the `<FillUp />`
 component will be turned into attribute labels on the component's root div element when
 those breakpoints are active.
 
