@@ -11,5 +11,6 @@ export function initialize() {
 }
 
 export default {
+  before: 'register-resize-observer-detector',
   initialize
 };
