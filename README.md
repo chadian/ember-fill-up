@@ -17,6 +17,7 @@ designing your responsive components.
 `ember-fill-up` detects changes on elements by using a [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver). If your browser doesn't
 [support](https://caniuse.com/#feat=resizeobserver) `ResizeObserver` then you may need to install a polyfill.
 
+Check out the motivations and ideas behind `ember-fill-up` in my [talk at EmberFest 2019](https://www.youtube.com/watch?v=RIdjk9_RSBY).
 
 Demo
 ------------------------------------------------------------------------------
