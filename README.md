@@ -59,7 +59,7 @@ ember g initializer setup-resize-detector-polyfill
 ```
 
 Inside the initializer file `app/initializers/setup-resize-detector-polyfill.js` we add the `ResizeObserver` polyfill when it doesn't exist:
-```
+```js
 import ResizeObserver from 'resize-observer-polyfill';
 
 export function initialize() {
@@ -242,12 +242,12 @@ Any attributes specified on the `<FillUp />` component will be "splatted" on the
 root div.
 
 For example:
-```
+```hbs
 <FillUp class="hello-friends"></FillUp>
 ```
 
 Results in the component's root div element receiving the class:
-```
+```hbs
 <div class="ember-fill-up hello-friends"></div>
 ```
 
@@ -268,7 +268,7 @@ In this case the only attribute that can be set are classes via the `classNames`
 ```
 
 Results with the root div element receiving the class:
-```
+```hbs
 <div class="ember-fill-up hello-friends"></div>
 ```
 
