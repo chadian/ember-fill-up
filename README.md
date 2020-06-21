@@ -366,7 +366,8 @@ as |F|>
   {{else if F.breakpoints.medium}}
     <Greeting::Medium model={{@model}}/>
   {{else}}
-    <Greeting::Small model={{@model}}/>   {{/if}}
+    <Greeting::Small model={{@model}}/>
+  {{/if}}
 </FillUp>
 ```
 
