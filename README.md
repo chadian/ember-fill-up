@@ -1,6 +1,11 @@
 ⛽️ ember-fill-up [![Build Status](https://travis-ci.org/chadian/ember-fill-up.svg?branch=master)](https://travis-ci.org/chadian/ember-fill-up)
 ==============================================================================
 
+## ⚠ No Longer Maintained
+This project is no longer maintained. This addon was a proof-of-concept for my [EmberFest talk](https://www.youtube.com/watch?v=RIdjk9_RSBY) previewing a user-friendly API for container/element queries and showcasing a few different strategies for respsonive components. At the time ember community was still discovering how best to support element resize events with element modifiers. I am happy to say that the base primitives have matured and an implementation that best illustrates these ideas continued in a newer addon by Isaac Lee with his project [`ember-container-query`](https://github.com/ijlee2/ember-container-query). I highly recommend everyone use it!
+
+---
+
 This addon gives you tools to help you create responsive components that are
 easier to develop, test, and use.
 
